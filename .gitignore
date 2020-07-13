@@ -1,0 +1,6 @@
+cmake-build-debug/*
+CMakeLists.txt
+yarn.lock
+node_modules/*
+.idea/*
+goals.md
