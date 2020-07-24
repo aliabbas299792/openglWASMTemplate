@@ -1,7 +1,7 @@
 source ~/emsdk/emsdk_env.sh >/dev/null 2>&1
 #will compile all cpp files in current directory and subdirectories
 emcc \
-  $(find . -type f -iname \*.cpp) \
+  $(find -name "*.cpp" -not -path "./include/*") \
   -std=c++14 \
   -s WASM=1 \
   -s USE_GLFW=3 \
@@ -11,5 +11,6 @@ emcc \
   -O3 \
   -o index.js \
   --preload-file assets \
-  -Isrc
+  -Isrc \
+  -Iinclude
 echo "Done";

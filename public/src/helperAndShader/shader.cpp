@@ -58,12 +58,16 @@ unsigned int shader::createShaderProgram(const std::string& vertexShaderSourceLo
   glDeleteProgram(vertexShader);
   glDeleteProgram(fragmentShader);
 
+  this->currentlyActiveShader = shaderProgram;
+
   return shaderProgram;
 }
 
 unsigned int shader::useShaderProgram(const std::string& shaderProgramName) {
   const unsigned int program = shaderPrograms[shaderProgramName];
   glUseProgram(program);
+
+  this->currentlyActiveShader = program;
 
   return program;
 }
@@ -72,4 +76,37 @@ void shader::deleteShaderProgram(const std::string& shaderProgramName) {
   const unsigned int program = this->shaderPrograms[shaderProgramName];
   this->shaderPrograms.erase(shaderProgramName);
   glDeleteProgram(program);
+}
+
+void shader::setUniform1f(std::string uniformName, float value) {
+  glUniform1f(
+    glGetUniformLocation(this->currentlyActiveShader, uniformName.c_str()),
+    value
+  );
+}
+
+void shader::setUniform2f(std::string uniformName, float value1, float value2) {
+  glUniform2f(
+    glGetUniformLocation(this->currentlyActiveShader, uniformName.c_str()),
+    value1,
+    value2
+  );
+}
+
+void shader::setUniform3f(std::string uniformName, float value1, float value2, float value3) {
+  glUniform3f(
+    glGetUniformLocation(this->currentlyActiveShader, uniformName.c_str()),
+    value1,
+    value2,
+    value3
+  );
+}
+
+void shader::setUniform4fv(std::string uniformName, int count, bool transpose, const float *value) {
+  glUniformMatrix4fv(
+    glGetUniformLocation(this->currentlyActiveShader, uniformName.c_str()),
+    count,
+    transpose,
+    value
+  );
 }

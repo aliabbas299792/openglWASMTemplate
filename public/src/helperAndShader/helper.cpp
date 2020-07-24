@@ -41,6 +41,7 @@ int initWindow(){ //will create the window using the global window
   glfwMakeContextCurrent(window);
 
   glViewport(0, 0, 800, 450);
+  glEnable(GL_DEPTH_TEST);
 
   return 1;
 }
