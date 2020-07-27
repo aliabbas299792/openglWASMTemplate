@@ -7,7 +7,7 @@
         box-sizing: border-box;
         padding: 0;
         margin: 0;
-        background:#000;
+        background:#333;
     }
 
     canvas{
@@ -15,6 +15,8 @@
         top:50%;
         left:50%;
         transform: translate(-50%, -50%);
+        max-width: 100vw;
+        max-height: 100vh;
     }
 </style>
 <canvas id="canvas" oncontextmenu="event.preventDefault()" height="0" width="0"></canvas>
@@ -35,7 +37,7 @@
   function resize(){
     //this ensures that aspect ratio of 16:9 is maintained
     //(this is used in combination with the css set max-width and max-height of 100vw and 100vh respectively)
-    const width = (window.innerHeight*16/9 > window.innerWidth) ? window.innerHeight*16/9 : window.innerWidth;
+    const width = (window.innerHeight < window.innerWidth*9/16) ? window.innerHeight*16/9 : window.innerWidth;
     const height = width*9/16;
     _setWindowSize(width*2, height*2); //sets the content to the correct size
     //setting it to be 2x bigger than the actual viewport seems to get rid of the aliasing effect well

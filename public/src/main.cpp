@@ -9,9 +9,9 @@
 #include "header/helper.h"
 #include "header/shader.h"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <glm/glm/glm.hpp>
+#include <glm/glm/gtc/matrix_transform.hpp>
+#include <glm/glm/gtc/type_ptr.hpp>
 
 std::function<void()> lambdaDrawLoop;
 void drawLoop() { lambdaDrawLoop(); }
@@ -106,7 +106,7 @@ int main() {
   int width, height; //will store the height and width, updated in the main loop
 
   lambdaDrawLoop = [&] {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glfwGetWindowSize(window, &width, &height); //sets the width and height variables
