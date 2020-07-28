@@ -35,10 +35,9 @@
   window.addEventListener('resize', resize);
 
   function resize(){
-    //this ensures that aspect ratio of 16:9 is maintained
-    //(this is used in combination with the css set max-width and max-height of 100vw and 100vh respectively)
-    const width = (window.innerHeight < window.innerWidth*9/16) ? window.innerHeight*16/9 : window.innerWidth;
-    const height = width*9/16;
+    const width = window.innerWidth;
+    const height = window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight;
+
     _setWindowSize(width*2, height*2); //sets the content to the correct size
     //setting it to be 2x bigger than the actual viewport seems to get rid of the aliasing effect well
 
