@@ -1,15 +1,15 @@
 #include "header/helper.h"
 
-std::string readFile(std::string filename){ //simple file reading function
-  std::ifstream file(filename);
+extern "C"{
+  extern const char* getFile(const char* filename, int length);
+}
 
-  file.seekg(0, std::ios::end); //seek to end of file
-  int size = file.tellg(); //get size of file
-  std::string buffer(size, ' ');
-  file.seekg(0); //seek back to beginning of file
-  file.read(&buffer[0], size);
+std::string readFile(std::string filename){ //calls a JavaScript function to get the data (it should be pre-fetched however)
+  const char* data = getFile(filename.c_str(), filename.size()); //get the file via JavaScript
+  const std::string returnData = data; //make a copy of the string
+  free((void*)data); //free the allocated memory
 
-  return buffer;
+  return returnData;
 }
 
 extern "C" {

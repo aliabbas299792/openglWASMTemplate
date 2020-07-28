@@ -37,7 +37,7 @@ emcc \
   -s MIN_WEBGL_VERSION=2 \
   -O3 \
   -o index.js \
-  --preload-file assets \
   -Isrc \
-  -Iinclude
+  -Iinclude \
+  --js-library library.js
 echo "Done";

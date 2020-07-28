@@ -4,7 +4,6 @@
 #include <emscripten/emscripten.h>
 #include <GLFW/glfw3.h>
 #include <GLES3/gl3.h>
-#include <cmath>
 
 #include "header/helper.h"
 #include "header/shader.h"
@@ -82,17 +81,6 @@ int main() {
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //copies the buffer data into memory
 
   /////
-  //EBO stuff
-  /////
-  /*
-  unsigned int EBO; //element buffer object
-  glGenBuffers(1, &EBO);
-
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); //ebo object
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); //copy the indexed ebo data
-  */
-
-  /////
   //attribute stuff
   /////
   int posAttrib = glGetAttribLocation(shaderProgram, "pos"); //gets attribute index with name pos
@@ -134,17 +122,9 @@ int main() {
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36); //divide by 2 since we have 3 elements per vertex for the normal
 
-    //EBO drawing
-    /*
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glDrawElements(GL_TRIANGLES, sizeof(indices)/sizeof(int), GL_UNSIGNED_INT, 0);
-    */
-
     glfwSwapBuffers(window);
     glfwPollEvents();
   };
   
   emscripten_set_main_loop(drawLoop, -1, true); //sets the emscripten main loop
-
-  return EXIT_SUCCESS;
 }

@@ -21,6 +21,17 @@
 </style>
 <canvas id="canvas" oncontextmenu="event.preventDefault()" height="0" width="0"></canvas>
 <!-- to start off with the height and width are set to 0 -->
+<script>
+    const files = ["assets/fragshader.glsl", "assets/vertexshader.glsl"];
+    const data = {};
+
+    for(const file of files){
+        fetch(file)
+            .then(res => res.text())
+            .then(res => data[file] = res);
+    }
+</script>
+<script src="library.js"></script>
 <script src="index.js"></script>
 <script type='text/javascript'>
   const canvas = document.getElementById('canvas');
