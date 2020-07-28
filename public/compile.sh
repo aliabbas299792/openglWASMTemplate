@@ -13,7 +13,7 @@ fi
 
 includeLibrariesPresence=$(ls ./include | grep 'RETRIEVED_FILES_DO_NOT_DELETE' | wc -l)
 
-if [[ includeLibrariesPresence -eq 0 ]]
+if [[ $includeLibrariesPresence -eq 0 ]]
 then
   cd include
   for script in *.sh
