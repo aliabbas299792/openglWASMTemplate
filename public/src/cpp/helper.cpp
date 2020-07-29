@@ -4,7 +4,7 @@ extern "C"{
   extern const char* getFile(const char* filename, int length);
 }
 
-std::string readFile(std::string filename){ //calls a JavaScript function to get the data (it should be pre-fetched however)
+std::string readFile(const std::string &filename){ //calls a JavaScript function to get the data (it should be pre-fetched however)
   const char* data = getFile(filename.c_str(), filename.size()); //get the file via JavaScript
   const std::string returnData = data; //make a copy of the string
   free((void*)data); //free the allocated memory
@@ -13,10 +13,10 @@ std::string readFile(std::string filename){ //calls a JavaScript function to get
 }
 
 extern "C" {
-void EMSCRIPTEN_KEEPALIVE setWindowSize(int width, int height){ //since this is called from JS it needs to be able to access the global variable window from main.cpp
-  glfwSetWindowSize(window, width, height);
-  glViewport(0, 0, width, height);
-}
+  void EMSCRIPTEN_KEEPALIVE setWindowSize(int width, int height){ //since this is called from JS it needs to be able to access the global variable window from main.cpp
+    glfwSetWindowSize(window, width, height);
+    glViewport(0, 0, width, height);
+  }
 }
 
 int initWindow(){ //will create the window using the global window

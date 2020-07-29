@@ -11,6 +11,11 @@ if (typeof mergeInto !== 'undefined') mergeInto(LibraryManager.library, {
 
         const buffer = Module._malloc(returnData.byteLength); //allocates enough space to store the contents of the return character array
         Module.HEAPU8.set(returnData, buffer); //store the typed array in the heap
+
+        Module.HEAPU8[buffer+returnData.byteLength] = 0;
+        //marks the final character as 0 (NUL character/Null terminator, C++ uses this as a flag indicating the end of a string)
+        //otherwise the C++ string will have a non-deterministic-ish end, so may include a bunch of random characters as well
+
         return buffer; //return this value (it's a pointer basically)
     }
 });

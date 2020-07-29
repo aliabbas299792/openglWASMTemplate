@@ -85,6 +85,13 @@ void shader::setUniform1f(std::string uniformName, float value) {
   );
 }
 
+void shader::setUniform1i(std::string uniformName, int value) {
+  glUniform1i(
+    glGetUniformLocation(this->currentlyActiveShader, uniformName.c_str()),
+    value
+  );
+}
+
 void shader::setUniform2f(std::string uniformName, float value1, float value2) {
   glUniform2f(
     glGetUniformLocation(this->currentlyActiveShader, uniformName.c_str()),

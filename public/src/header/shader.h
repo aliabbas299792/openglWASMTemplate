@@ -18,6 +18,7 @@ public:
     unsigned int useShaderProgram(const std::string& shaderProgramName);
     void deleteShaderProgram(const std::string& shaderProgramName);
     void setUniform1f(std::string uniformName, float value);
+    void setUniform1i(std::string uniformName, int value);
     void setUniform2f(std::string uniformName, float value1, float value2);
     void setUniform3f(std::string uniformName, float value1, float value2, float value3);
     void setUniform4fv(std::string uniformName, int count, bool transpose, const float* value);

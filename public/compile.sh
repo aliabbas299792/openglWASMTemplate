@@ -37,6 +37,7 @@ emcc \
   -s MIN_WEBGL_VERSION=2 \
   -O3 \
   -o index.js \
+  --preload-file "assets/images" \
   -Isrc \
   -Iinclude \
   --js-library library.js
