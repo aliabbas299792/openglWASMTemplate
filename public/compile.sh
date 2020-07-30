@@ -15,6 +15,7 @@ includeLibrariesPresence=$(ls ./include | grep 'RETRIEVED_FILES_DO_NOT_DELETE' |
 
 if [[ $includeLibrariesPresence -eq 0 ]]
 then
+  mkdir libs >/dev/null 2>&1
   cd include
   for script in *.sh
   do
@@ -29,6 +30,7 @@ source ./emsdk/emsdk_env.sh >/dev/null 2>&1
 #will compile all cpp files in current directory and subdirectories
 emcc \
   $(find -name "*.cpp" -not \( -path "./include/*" -o -path "./emsdk/*" \) ) \
+  libs/*.a \
   -std=c++14 \
   -s WASM=1 \
   -s USE_GLFW=3 \
@@ -39,5 +41,10 @@ emcc \
   -o index.js \
   -Isrc \
   -Iinclude \
-  --js-library library.js
+  -s ALLOW_MEMORY_GROWTH=1 \
+  --no-heap-copy \
+  --preload-file "assets/images" \
+  --preload-file "assets/models" \
+  --js-library library.js \
+  -s LLD_REPORT_UNDEFINED
 echo "Done";
