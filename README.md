@@ -10,3 +10,5 @@ To see this work simply do `node install` or `yarn` in the main directory, and t
 ![alt text](https://raw.githubusercontent.com/aliabbas299792/openglWASMTemplate/textures/screenshot.png)
 
 Emscripten SDK and required libraries are downloaded via compile.sh, which in turn invokes the script(s) in the include directory, which setup the header files and stuff as required, to compile the source code.
+
+Learnt from here https://learnopengl.com/.
