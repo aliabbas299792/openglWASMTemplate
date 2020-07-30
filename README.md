@@ -1,5 +1,5 @@
 # OpenGL ES 3.0 WASM Template
-The project uses GLFW3, GLM, OpenGL ES 3.0 and so consequently WebGL 2.0.
+The project uses GLFW3, GLM, stb_image.h, OpenGL ES 3.0 and so consequently WebGL 2.0.
 
 This is the example with textures, the main one is [here](https://github.com/aliabbas299792/openglWASMTemplate).
 
